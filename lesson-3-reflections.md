@@ -6,3 +6,6 @@ working on it can then get those changes by pulling from the remote. In terms of
 more place than just locally. The remote can then facilitate other clones of the repository, or more remotes can be created for greater 
 distribution; this all makes the storage of the code much more robust and less likely to be lost due to mistake, system failure or
 malicious attacks.
+
+## Why might you want to always pull changes manually rather than having Git automatically stay up-to-date with your remote repository?
+If somebody is makign active changes to a file you're changing, there may be many conflicts from pulling; it may be better to deal with these once when you choose to pull, rather than every time an automatic pull takes place. Also, you may want to branch at a certain point, so you wouldn't want to pull until you'd branched or the branch could be in the wrong place (although there are ways to get around this).
