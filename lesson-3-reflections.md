@@ -15,3 +15,8 @@ Having the last known state of the remote stored locally means, without an inter
 
 ## How would you collaborate without using Git or GitHub? What would be easier, and what would be harder?
 Without Github (or another remote git code management system), pull requests and code review would be much more difficult to carry out effectively and transparently. Remotes can be set up without Github, although they would only provide the same functionality that git itself provides, plus any features extra software added on top brings.
+
+## When would you want to make changes in a separate branch rather than directly in master? What benefits does each approach have?
+I would make changes in separat branch when collaborating on code with others. I can make my changes without affecting anybody else's code (and without their code affecting mine) until a pull request is opened, at which point GitHub will flag if there are any new conflicts with the master branch. These conflicts can be fixed by merging master into the branch. Others can comment on and request changes to my code in the branch until they approve of it; it can then be merged into master and everybody can pull the changes. 
+
+I would make changes directly in master if I was working on my own on something simple e.g. working on separate pieces of code that don't affect each other. This is much easier to manage than checking out branches and opening pull requests, but that is because no collaboration is required - the overhead of making changes in separate branches is outweighed by the advantages it has for collaboratively building code.
