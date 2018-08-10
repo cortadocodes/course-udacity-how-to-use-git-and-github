@@ -8,8 +8,8 @@ REPO_NAME="sample_git_repository"
 FILE_1="file_1.txt"
 FILE_2="file_2.txt"
 FILE_3="file_3.txt"
-DATA_FILE_1="data_file_1.csv"
-DATA_FILE_2="data_file_2.csv"
+FEATURE_FILE_1="feature_file_1.txt"
+FEATURE_FILE_2="feature_files_2.txt"
 
 create_repo() {
     mkdir $1
@@ -82,6 +82,27 @@ EOM
 git add $FILE_3
 git commit -m "Commit 4 - Add a third file"
 
-# Remove file_2 from the repo
 git rm $FILE_1
 git commit -m "Commit 5 - Remove file_1"
+
+# Checkout a feature branch and add a few commits
+git checkout -b feature-branch
+
+cat > $FEATURE_FILE_1 <<- EOM
+Alpha
+Beta
+Gamma
+Delta
+EOM
+git add $FEATURE_FILE_1
+git commit -m "Commit 6 (feature branch) - Add feature_file_1"
+
+cat > $FEATURE_FILE_2 <<- EOM
+Epsilon
+Zeta
+Eta
+Theta
+Iota
+EOM
+git add $FEATURE_FILE_2
+git commit -m "Commit 7 (feature branch) - Add feature_file_2"
