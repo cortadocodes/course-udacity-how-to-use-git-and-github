@@ -25,7 +25,7 @@ overwrite_repo() {
     echo -e "Overwritten $1 \n";
 }
 
-# If the repository exists
+# If the repository exists already, ask the user if they want to overwrite it
 if [ ! -d $REPO_NAME ]; then
     create_repo $REPO_NAME
 else
