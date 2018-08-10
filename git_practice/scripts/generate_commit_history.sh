@@ -12,27 +12,27 @@ DATA_FILE_1="data_file_1.csv"
 DATA_FILE_2="data_file_2.csv"
 
 create_repo() {
-    mkdir $REPO_NAME
-    cd $REPO_NAME
+    mkdir $1
+    cd $1
     git init
-    echo -e "\nCreated new git repository in $REPO_NAME \n"
+    echo -e "\nCreated new git repository in $1 \n"
 }
 
 overwrite_repo() {
-    rm -rf $REPO_NAME;
-    create_repo
-    echo -e "Overwritten $REPO_NAME \n";
+    rm -rf $1;
+    create_repo $1
+    echo -e "Overwritten $1 \n";
 }
 
 if [ ! -d $REPO_NAME ]; then
-    create_repo
+    create_repo $REPO_NAME
 else
     while true; do
         read -p "Sample repository already exists: would you like to overwrite it? " choice
 
         case $choice in
             [Yy]* )
-                overwrite_repo
+                overwrite_repo $REPO_NAME
                 break
                 ;;
 
