@@ -75,3 +75,9 @@ git commit -m "Commit 4 - Add a third file"
 # Remove file_2 from the repo
 git rm $FILE_1
 git commit -m "Commit 5 - Remove file_1"
+
+# Add some untracked data files
+mkdir data
+cd data
+echo "1,2,3,4,5" > data_file_1.csv
+echo "espresso, flat white, cortado, long black, macchiato" > data_file_2.csv
