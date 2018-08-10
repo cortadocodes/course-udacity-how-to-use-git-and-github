@@ -9,6 +9,7 @@ show_log_and_files() {
     git log --oneline
     echo -e "\nAnd its files:"
     ls -lh
+    echo -e "\n"
 }
 
 press_any_key() {
@@ -41,7 +42,6 @@ press_any_key
 # See git logs and files on master and feature-branch after rebase
 echo "The feature-branch log after rebasing:"
 show_log_and_files
-echo -e "\n"
 
 git checkout master
 
@@ -60,4 +60,3 @@ press_any_key
 # Preview git logs and files on master after rebase and merge
 echo "The master branch log after rebasing and merging:"
 show_log_and_files
-echo -e "\n"
