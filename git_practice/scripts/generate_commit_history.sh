@@ -8,6 +8,8 @@ REPO_NAME="sample_git_repository"
 FILE_1="file_1.txt"
 FILE_2="file_2.txt"
 FILE_3="file_3.txt"
+DATA_FILE_1="data_file_1.csv"
+DATA_FILE_2="data_file_2.csv"
 
 create_repo() {
     mkdir $REPO_NAME
@@ -83,5 +85,5 @@ git commit -m "Commit 5 - Remove file_1"
 # Add some untracked data files
 mkdir data
 cd data
-echo "1,2,3,4,5" > data_file_1.csv
-echo "espresso, flat white, cortado, long black, macchiato" > data_file_2.csv
+echo "1,2,3,4,5" > $DATA_FILE_1
+echo "espresso, flat white, cortado, long black, macchiato" > $DATA_FILE_2
