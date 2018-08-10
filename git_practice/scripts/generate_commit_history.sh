@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# This script generates a simple sample git repository with a few commits. Its intended use is to provide an
+# easy-to-understand repo that can be used for practicing and understanding git operations such as rebases, squashes,
+# hard pushes, pulls and resets. The sample repo is created in the directory $REPO_NAME wherever the script is called.
+
 REPO_NAME="sample_git_repository"
 FILE_1="file_1.txt"
 FILE_2="file_2.txt"
