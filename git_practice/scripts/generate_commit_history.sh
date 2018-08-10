@@ -3,6 +3,7 @@
 REPO_NAME="sample_git_repository"
 FILE_1="file_1.txt"
 FILE_2="file_2.txt"
+FILE_3="file_3.txt"
 
 create_repo() {
     mkdir $REPO_NAME
@@ -49,13 +50,28 @@ Initial line B
 EOM
 
 git add $FILE_1 $FILE_2
-git commit -m "Add initial files"
+git commit -m "Commit 1 - Add initial files"
 
-# Make some changes to the files and commit these
-echo "New line from second commit" >> $FILE_1
+# Make some changes to the files
+echo "New line C from second commit" >> $FILE_1
 git add $FILE_1
-git commit -m "Add a new line to file_1"
+git commit -m "Commit 2 - Add a new line to file_1"
 
-echo "New line from second commit" >> $FILE_2
+echo "New line C from second commit" >> $FILE_2
 git add $FILE_2
-git commit -m "Add a new line to file_2"
+git commit -m "Commit 3 - Add a new line to file_2"
+
+# Add a new file to the repo
+cat > $FILE_3 <<- EOM
+Line A - this
+Line B - is
+Line C - third
+Line D - sample
+Line E - file
+EOM
+git add $FILE_3
+git commit -m "Commit 4 - Add a third file"
+
+# Remove file_2 from the repo
+git rm $FILE_1
+git commit -m "Commit 5 - Remove file_1"
