@@ -25,8 +25,11 @@ else
                 break
                 ;;
 
-            [Nn]* ) exit;;
-            * ) echo "Please answer yes or no:";;
+            [Nn]* )
+                exit;;
+
+            * )
+                echo "Please answer yes or no:";;
 
         esac
     done
@@ -47,3 +50,12 @@ EOM
 
 git add $FILE_1 $FILE_2
 git commit -m "Add initial files"
+
+# Make some changes to the files and commit these
+echo "New line from second commit" >> $FILE_1
+git add $FILE_1
+git commit -m "Add a new line to file_1"
+
+echo "New line from second commit" >> $FILE_2
+git add $FILE_2
+git commit -m "Add a new line to file_2"
