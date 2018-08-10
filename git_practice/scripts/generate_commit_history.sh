@@ -9,7 +9,7 @@ FILE_1="file_1.txt"
 FILE_2="file_2.txt"
 FILE_3="file_3.txt"
 FEATURE_FILE_1="feature_file_1.txt"
-FEATURE_FILE_2="feature_files_2.txt"
+FEATURE_FILE_2="feature_file_2.txt"
 
 create_repo() {
     mkdir $1
