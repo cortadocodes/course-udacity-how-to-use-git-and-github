@@ -8,6 +8,7 @@ REPO_NAME="sample_git_repository"
 FILE_1="file_1.txt"
 FILE_2="file_2.txt"
 FILE_3="file_3.txt"
+FILE_4="file_4.txt"
 FEATURE_FILE_1="feature_file_1.txt"
 FEATURE_FILE_2="feature_file_2.txt"
 
@@ -24,6 +25,7 @@ overwrite_repo() {
     echo -e "Overwritten $1 \n";
 }
 
+# If the repository exists
 if [ ! -d $REPO_NAME ]; then
     create_repo $REPO_NAME
 else
@@ -45,8 +47,6 @@ else
         esac
     done
 fi
-
-# This is only executed if a new repo is created, or if the user chooses to overwrite an existing repository
 
 # Create the initial files and commit them
 cat > $FILE_1 <<- EOM
@@ -106,3 +106,12 @@ Iota
 EOM
 git add $FEATURE_FILE_2
 git commit -m "Commit 7 (feature branch) - Add feature_file_2"
+
+# Checkout master, add a new file and commit so the two branches are out of sync
+git checkout master
+
+cat > $FILE_4 <<- EOM
+This file makes master become out of sync with feature-branch
+EOM
+git add $FILE_4
+git commit -m "Commit 6 (master branch) - Add file_4"
