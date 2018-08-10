@@ -1,31 +1,42 @@
 #!/usr/bin/env bash
 
 REPO_NAME=$1
+SEPARATOR_0="==========================="
+SEPARATOR_1="=============="
+SEPARATOR_2="=============================="
 
 cd $REPO_NAME
 
 # See git logs and files on master and feature-branch before rebase
+echo $SEPARATOR_0
+echo "INITIAL STATE OF REPOSITORY"
+echo -e "$SEPARATOR_0\n"
+
 git checkout master
 echo "The master branch log before rebasing:"
 git log --oneline
-echo "And its files:"
+echo -e "\nAnd its files:"
 ls -lh
 echo -e "\n"
 
 git checkout feature-branch
 echo "The feature-branch log before rebasing:"
 git log --oneline
-echo "And its files:"
+echo -e "\nAnd its files:"
 ls -lh
 echo -e "\n"
 
-echo -e "PERFORM REBASE\n"
+echo $SEPARATOR_1
+echo "PERFORM REBASE"
+echo -e "$SEPARATOR_1\n"
+
 git rebase master
+echo -e "\n"
 
 # See git logs and files on master and feature-branch after rebase
 echo "The feature-branch log after rebasing:"
 git log --oneline
-echo "And its files:"
+echo -e "\nAnd its files:"
 ls -lh
 echo -e "\n"
 
@@ -33,16 +44,20 @@ git checkout master
 
 echo "The master branch log after rebasing, but before merging:"
 git log --oneline
-echo "And its files:"
+echo -e "\nAnd its files:"
 ls -lh
 echo -e "\n"
 
-echo -e "PERFORM (FAST-FORWARD) MERGE"
+echo $SEPARATOR_2
+echo "PERFORM (FAST-FORWARD) MERGE"
+echo -e "$SEPARATOR_2\n"
+
 git merge feature-branch
+echo -e "\n"
 
 # Preview git logs and files on master after rebase and merge
 echo "The master branch log after rebasing and merging:"
 git log --oneline
-echo "And its files:"
+echo -e "\nAnd its files:"
 ls -lh
 echo -e "\n"
