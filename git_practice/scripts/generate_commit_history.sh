@@ -18,6 +18,12 @@ create_repo() {
     echo -e "\nCreated new git repository in $REPO_NAME \n"
 }
 
+overwrite_repo() {
+    rm -rf $REPO_NAME;
+    create_repo
+    echo -e "Overwritten $REPO_NAME \n";
+}
+
 if [ ! -d $REPO_NAME ]; then
     create_repo
 else
@@ -26,9 +32,7 @@ else
 
         case $choice in
             [Yy]* )
-                rm -rf $REPO_NAME;
-                create_repo
-                echo -e "Overwritten $REPO_NAME \n";
+                overwrite_repo
                 break
                 ;;
 
