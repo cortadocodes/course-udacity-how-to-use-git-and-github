@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
 REPO_NAME=$1
-SEPARATOR_0="==========================="
-SEPARATOR_1="=============="
-SEPARATOR_2="=============================="
+INITIAL_STATE="INITIAL STATE OF REPOSITORY"
+REBASE="PERFORM REBASE"
+MERGE="PERFORM (FAST-FORWARD) MERGE"
+
+separator() {
+    arg_length=${#1}
+    eval $(echo printf "=%0.s" {1..$arg_length})
+    echo
+}
 
 show_log_and_files() {
     git log --oneline
@@ -16,12 +22,13 @@ press_any_key() {
     read -rsp $'Press any key to continue...\n\n' -n1 key
 }
 
+
 cd $REPO_NAME
 
 # See git logs and files on master and feature-branch before rebase
-echo $SEPARATOR_0
-echo "INITIAL STATE OF REPOSITORY"
-echo -e "$SEPARATOR_0\n"
+separator "$INITIAL_STATE"
+echo $INITIAL_STATE
+separator "$INITIAL_STATE"
 
 git checkout master
 echo "The master branch log before rebasing:"
@@ -32,9 +39,9 @@ echo "The feature-branch log before rebasing:"
 show_log_and_files
 press_any_key
 
-echo $SEPARATOR_1
-echo "PERFORM REBASE"
-echo -e "$SEPARATOR_1\n"
+separator "$REBASE"
+echo $REBASE
+separator "$REBASE"
 
 git rebase master
 press_any_key
@@ -44,15 +51,13 @@ echo "The feature-branch log after rebasing:"
 show_log_and_files
 
 git checkout master
-
 echo "The master branch log after rebasing, but before merging:"
 show_log_and_files
-
 press_any_key
 
-echo $SEPARATOR_2
-echo "PERFORM (FAST-FORWARD) MERGE"
-echo -e "$SEPARATOR_2\n"
+separator "$MERGE"
+echo $MERGE
+separator "$MERGE"
 
 git merge feature-branch
 press_any_key
