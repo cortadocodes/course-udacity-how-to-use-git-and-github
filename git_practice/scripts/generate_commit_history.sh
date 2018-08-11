@@ -5,12 +5,15 @@
 # hard pushes, pulls and resets. The sample repo is created in the directory $REPO_NAME wherever the script is called.
 
 REPO_NAME="sample_git_repository"
+
 FILE_1="file_1.txt"
 FILE_2="file_2.txt"
 FILE_3="file_3.txt"
 FILE_4="file_4.txt"
+FILE_5="file_5.txt"
 FEATURE_FILE_1="feature_file_1.txt"
 FEATURE_FILE_2="feature_file_2.txt"
+FEATURE_FILE_3="feature_file_3.txt"
 
 
 create_repo() {
@@ -91,7 +94,7 @@ git commit -m "Commit 4 - Add a third file"
 git rm $FILE_1
 git commit -m "Commit 5 - Remove file_1"
 
-# Checkout a feature branch and add a few commits
+# Create and checkout a feature branch and add a few commits
 git checkout -b feature-branch
 
 cat > $FEATURE_FILE_1 <<- EOM
@@ -113,11 +116,28 @@ EOM
 git add $FEATURE_FILE_2
 git commit -m "Commit 7 (feature branch) - Add feature_file_2"
 
-# Checkout master, add a new file and commit so the two branches are out of sync
 git checkout master
-
 cat > $FILE_4 <<- EOM
-This file makes master become out of sync with feature-branch
+This file makes master become out of sync with feature-branch;
+note that it is added in between commits 7 and 8 on feature-branch.
 EOM
 git add $FILE_4
 git commit -m "Commit 6 (master branch) - Add file_4"
+
+git checkout feature-branch
+cat > $FEATURE_FILE_3 <<-EOM
+Kappa
+Lambda
+Mu
+EOM
+git add $FEATURE_FILE_3
+git commit -m "Commit 8 (feature branch) - Add feature_file_3"
+
+# Checkout master, add a new file and commit so the two branches are out of sync
+git checkout master
+
+cat > $FILE_5 <<- EOM
+Another file out-of-sync with feature-branch
+EOM
+git add $FILE_5
+git commit -m "Commit 7 (master branch) - Add file_5"
