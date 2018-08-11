@@ -19,7 +19,7 @@ print_separator() {
 
 print_separator_text() {
     print_separator "$1"
-    echo $1
+    echo "$1"
     print_separator "$1"
 }
 
@@ -38,7 +38,7 @@ demonstrate_rebase() {
     cd $REPO_NAME
 
     # See git logs and files on master and feature branch before rebase
-    print_separator_text $INITIAL_STATE
+    print_separator_text "$INITIAL_STATE"
 
     git checkout master
     echo "The master branch log before rebasing:"
@@ -49,7 +49,7 @@ demonstrate_rebase() {
     show_log_and_files
     press_any_key
 
-    print_separator_text $REBASE
+    print_separator_text "$REBASE"
 
     git rebase master
     press_any_key
@@ -63,7 +63,7 @@ demonstrate_rebase() {
     show_log_and_files
     press_any_key
 
-    print_separator_text $MERGE
+    print_separator_text "$MERGE"
 
     git merge $BRANCH
     press_any_key
