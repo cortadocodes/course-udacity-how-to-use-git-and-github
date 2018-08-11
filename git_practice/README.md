@@ -12,6 +12,7 @@ from `git-practice/git_practice`. This will create a git repository called `samp
 `git-practice/git_practice` with all the normal functionality of a git repo.
 
 ## Demonstrations
+
 ### Rebase
 For demonstration of a rebase, run
 ```bash
@@ -19,5 +20,3 @@ bash scripts/demonstrate_rebase.sh sample_git_repository feature-branch
 ```
 which will rebase the `feature-branch` branch on to `master`, displaying the `git log` and tracked files on both 
 `master` and `feature-branch` at each step.
-
-### Squash
