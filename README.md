@@ -2,7 +2,7 @@
 This repository contains some of my practice and study of git and GitHub.
 
 ## Udacity course - How to use Git and GitHub
-My reflections from the Udacity course "How to use Git and Github" can be found [here](https://eu.udacity.com/course/how-to-use-git-and-github--ud775).
+My reflections from the Udacity course ["How to use Git and Github"](https://eu.udacity.com/course/how-to-use-git-and-github--ud775) can be found [here](/how_to_use_git_and_github_course).
 The questions answered in the reflections are suggested questions from the course, intended to reinforce the student's 
 learning of the topics taught.
 
