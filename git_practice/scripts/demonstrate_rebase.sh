@@ -28,46 +28,49 @@ press_any_key() {
     read -rsp $'Press any key to continue...\n\n' -n1 key
 }
 
+demonstrate_rebase() {
+    cd $REPO_NAME
 
-cd $REPO_NAME
+    # See git logs and files on master and feature branch before rebase
+    separator "$INITIAL_STATE"
+    echo $INITIAL_STATE
+    separator "$INITIAL_STATE"
 
-# See git logs and files on master and feature branch before rebase
-separator "$INITIAL_STATE"
-echo $INITIAL_STATE
-separator "$INITIAL_STATE"
+    git checkout master
+    echo "The master branch log before rebasing:"
+    show_log_and_files
 
-git checkout master
-echo "The master branch log before rebasing:"
-show_log_and_files
+    git checkout $BRANCH
+    echo "The $BRANCH branch log before rebasing:"
+    show_log_and_files
+    press_any_key
 
-git checkout $BRANCH
-echo "The $BRANCH branch log before rebasing:"
-show_log_and_files
-press_any_key
+    separator "$REBASE"
+    echo $REBASE
+    separator "$REBASE"
 
-separator "$REBASE"
-echo $REBASE
-separator "$REBASE"
+    git rebase master
+    press_any_key
 
-git rebase master
-press_any_key
+    # See git logs and files on master and feature branch after rebase
+    echo "The $BRANCH branch log after rebasing:"
+    show_log_and_files
 
-# See git logs and files on master and feature branch after rebase
-echo "The $BRANCH branch log after rebasing:"
-show_log_and_files
+    git checkout master
+    echo "The master branch log after rebasing, but before merging:"
+    show_log_and_files
+    press_any_key
 
-git checkout master
-echo "The master branch log after rebasing, but before merging:"
-show_log_and_files
-press_any_key
+    separator "$MERGE"
+    echo $MERGE
+    separator "$MERGE"
 
-separator "$MERGE"
-echo $MERGE
-separator "$MERGE"
+    git merge $BRANCH
+    press_any_key
 
-git merge $BRANCH
-press_any_key
+    # Preview git logs and files on master after rebase and merge
+    echo "The master branch log after rebasing and merging:"
+    show_log_and_files
+}
 
-# Preview git logs and files on master after rebase and merge
-echo "The master branch log after rebasing and merging:"
-show_log_and_files
+demonstrate_rebase
