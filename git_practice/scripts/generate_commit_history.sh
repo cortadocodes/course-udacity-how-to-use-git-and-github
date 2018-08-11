@@ -12,6 +12,7 @@ FILE_4="file_4.txt"
 FEATURE_FILE_1="feature_file_1.txt"
 FEATURE_FILE_2="feature_file_2.txt"
 
+
 create_repo() {
     mkdir $1
     cd $1
@@ -25,28 +26,33 @@ overwrite_repo() {
     echo -e "Overwritten $1 \n";
 }
 
-# If the repository exists already, ask the user if they want to overwrite it
-if [ ! -d $REPO_NAME ]; then
-    create_repo $REPO_NAME
-else
-    while true; do
-        read -p "Sample repository already exists: would you like to overwrite it? " choice
+create_or_overwrite_repo() {
+    # If the repository exists already, ask the user if they want to overwrite it
+    if [ ! -d $REPO_NAME ]; then
+        create_repo $REPO_NAME
+    else
+        while true; do
+            read -p "Sample repository already exists: would you like to overwrite it? " choice
 
-        case $choice in
-            [Yy]* )
-                overwrite_repo $REPO_NAME
-                break
-                ;;
+            case $choice in
+                [Yy]* )
+                    overwrite_repo $REPO_NAME
+                    break
+                    ;;
 
-            [Nn]* )
-                exit;;
+                [Nn]* )
+                    exit;;
 
-            * )
-                echo "Please answer yes or no:";;
+                * )
+                    echo "Please answer yes or no:";;
 
-        esac
-    done
-fi
+            esac
+        done
+    fi
+}
+
+
+create_or_overwrite_repo
 
 # Create the initial files and commit them
 cat > $FILE_1 <<- EOM
