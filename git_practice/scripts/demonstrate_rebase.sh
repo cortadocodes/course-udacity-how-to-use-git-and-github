@@ -11,10 +11,16 @@ INITIAL_STATE="INITIAL STATE OF REPOSITORY"
 REBASE="PERFORM REBASE"
 MERGE="PERFORM (FAST-FORWARD) MERGE"
 
-separator() {
+print_separator() {
     arg_length=${#1}
     eval $(echo printf "=%0.s" {1..$arg_length})
     echo
+}
+
+print_separator_text() {
+    print_separator "$1"
+    echo $1
+    print_separator "$1"
 }
 
 show_log_and_files() {
@@ -32,9 +38,7 @@ demonstrate_rebase() {
     cd $REPO_NAME
 
     # See git logs and files on master and feature branch before rebase
-    separator "$INITIAL_STATE"
-    echo $INITIAL_STATE
-    separator "$INITIAL_STATE"
+    print_separator_text $INITIAL_STATE
 
     git checkout master
     echo "The master branch log before rebasing:"
@@ -45,9 +49,7 @@ demonstrate_rebase() {
     show_log_and_files
     press_any_key
 
-    separator "$REBASE"
-    echo $REBASE
-    separator "$REBASE"
+    print_separator_text $REBASE
 
     git rebase master
     press_any_key
@@ -61,9 +63,7 @@ demonstrate_rebase() {
     show_log_and_files
     press_any_key
 
-    separator "$MERGE"
-    echo $MERGE
-    separator "$MERGE"
+    print_separator_text $MERGE
 
     git merge $BRANCH
     press_any_key
